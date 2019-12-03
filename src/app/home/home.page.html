@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Producto
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--Vamos a crear un ítem por cada categoría en el array "categorias"-->
+  <ion-item>
+    <ion-label>Categoría</ion-label>
+    <ion-select (ionChange)="changeSelected($event)">
+      <ion-select-option value="tecnologia">Tecnología</ion-select-option>
+      <ion-select-option value="hogar">Hogar</ion-select-option>
+      <ion-select-option value="inmobiliaria">Inmobiliaria</ion-select-option>
+      <ion-select-option value="motor">Motor</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-label>Nombre</ion-label>
+      <ion-input placeholder="Nombre"></ion-input>
+    </ion-item>
+    <!-- Utilizamos comillas simples para la string dentro del ngIF-->
+    <ng-container *ngIf="categoria === 'motor'">
+      <ion-list>
+        <ion-radio-group>
+          <ion-item>
+            <ion-label>Coche</ion-label>
+            <ion-radio slot="start" value="coche"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Moto</ion-label>
+            <ion-radio slot="start" value="moto"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+        <ion-item>
+          <ion-label>Km:</ion-label>
+          <ion-textarea placeholder="Km"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label>Fecha:</ion-label>
+          <ion-datetime displayFormat="YYYY" placeholder="2005"></ion-datetime>
+        </ion-item>
+      </ion-list>
+    </ng-container>
+    <ng-container *ngIf="categoria === 'inmobiliaria'">
+      <ion-list>
+        <ion-item>
+          <ion-label>Metros<sup>2</sup>:</ion-label>
+          <ion-textarea placeholder="extra"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label>Baños:</ion-label>
+          <ion-textarea placeholder="1"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label>Habitaciones:</ion-label>
+          <ion-textarea placeholder="2"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label>Localidad:</ion-label>
+          <ion-textarea placeholder="Valencia"></ion-textarea>
+        </ion-item>
+      </ion-list>
+    </ng-container>
+    <ng-container *ngIf="categoria === 'tecnologia'">
+      <ion-list>
+        <ion-radio-group>
+          <ion-item>
+            <ion-label> Estado:</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Usado</ion-label>
+            <ion-radio slot="start" value="usado"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Nuevo</ion-label>
+            <ion-radio slot="start" value="perfecto"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ng-container>
+    <ion-item>
+      <ion-label>Descripción</ion-label>
+      <ion-textarea placeholder="Descripción"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Precio</ion-label>
+      <ion-input placeholder="Precio"></ion-input>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
