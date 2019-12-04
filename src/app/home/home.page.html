@@ -1,71 +1,72 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>
-      Producto
+    <ion-title align="center">
+      Anuncio {{categoria}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!--Vamos a crear un ítem por cada categoría en el array "categorias"-->
+  <!--Select para cambiar entre categorías, así queda claro en que categoría estás."-->
   <ion-item>
-    <ion-label>Categoría</ion-label>
+    <ion-label>Categoría </ion-label>
+    <ion-icon [name]="img"></ion-icon>
     <ion-select (ionChange)="changeSelected($event)">
-      <ion-select-option value="tecnologia">Tecnología</ion-select-option>
-      <ion-select-option value="hogar">Hogar</ion-select-option>
-      <ion-select-option value="inmobiliaria">Inmobiliaria</ion-select-option>
-      <ion-select-option value="motor">Motor</ion-select-option>
+      <ion-select-option value="Tecnologia">Tecnología</ion-select-option>
+      <ion-select-option value="Hogar">Hogar</ion-select-option>
+      <ion-select-option value="Inmobiliaria">Inmobiliaria</ion-select-option>
+      <ion-select-option value="Motor">Motor</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-list>
     <ion-item>
       <ion-label>Nombre</ion-label>
-      <ion-input placeholder="Nombre"></ion-input>
+      <ion-input class="textinput" placeholder="Nombre" ></ion-input>
     </ion-item>
     <!-- Utilizamos comillas simples para la string dentro del ngIF-->
-    <ng-container *ngIf="categoria === 'motor'">
+    <ng-container *ngIf="categoria === 'Motor'">
       <ion-list>
         <ion-radio-group>
           <ion-item>
             <ion-label>Coche</ion-label>
-            <ion-radio slot="start" value="coche"></ion-radio>
+            <ion-radio slot="start" value="Coche"></ion-radio>
           </ion-item>
           <ion-item>
             <ion-label>Moto</ion-label>
-            <ion-radio slot="start" value="moto"></ion-radio>
+            <ion-radio slot="start" value="Moto"></ion-radio>
           </ion-item>
         </ion-radio-group>
         <ion-item>
           <ion-label>Km:</ion-label>
-          <ion-textarea placeholder="Km"></ion-textarea>
+          <ion-input class="textinput" placeholder="Km" type="number"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Fecha:</ion-label>
-          <ion-datetime displayFormat="YYYY" placeholder="2005"></ion-datetime>
+          <ion-label>Año:</ion-label>
+          <ion-datetime class="textinput" displayFormat="YYYY" placeholder="2005"></ion-datetime>
         </ion-item>
       </ion-list>
     </ng-container>
-    <ng-container *ngIf="categoria === 'inmobiliaria'">
+    <ng-container *ngIf="categoria === 'Inmobiliaria'">
       <ion-list>
         <ion-item>
           <ion-label>Metros<sup>2</sup>:</ion-label>
-          <ion-textarea placeholder="extra"></ion-textarea>
+          <ion-input class="textinput" placeholder="200" type="number"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Baños:</ion-label>
-          <ion-textarea placeholder="1"></ion-textarea>
+          <ion-input  class="textinput" placeholder="1" type="number"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Habitaciones:</ion-label>
-          <ion-textarea placeholder="2"></ion-textarea>
+          <ion-input class="textinput" placeholder="2" type="number"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label>Localidad:</ion-label>
-          <ion-textarea placeholder="Valencia"></ion-textarea>
+          <ion-input class="textinput" placeholder="Valencia"></ion-input>
         </ion-item>
       </ion-list>
     </ng-container>
-    <ng-container *ngIf="categoria === 'tecnologia'">
+    <ng-container *ngIf="categoria === 'Tecnologia'">
       <ion-list>
         <ion-radio-group>
           <ion-item>
@@ -84,12 +85,12 @@
     </ng-container>
     <ion-item>
       <ion-label>Descripción</ion-label>
-      <ion-textarea placeholder="Descripción"></ion-textarea>
+      <ion-textarea class="textinput" placeholder="Descripción"></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-label>Precio</ion-label>
-      <ion-input placeholder="Precio"></ion-input>
+      <ion-input class="textinput" placeholder="Precio" type="number"></ion-input>
     </ion-item>
   </ion-list>
-
+  <ion-button color="tertiary" expand="block">Publicar</ion-button>
 </ion-content>
