@@ -8,7 +8,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
+//Registramos el servicio de Productos.
+import {ProductosService} from './services/ProductosService'
 //Definimos todo lo que nos va a hacer falta para la app.
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,8 @@ import { AppRoutingModule } from './app-routing.module';
   providers: [
     StatusBar,
     SplashScreen,
+    //Parte del registro.
+    ProductosService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { IProducto, IInmobiliaria, IMotor, ITecnologia } from '../interfaces';
 import {ToastController}  from '@ionic/angular'
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-nuevo-anuncio',
+  templateUrl: './nuevo-anuncio.page.html',
+  styleUrls: ['./nuevo-anuncio.page.scss'],
 })
-export class HomePage {
+export class NuevoAnuncioPage {
+
   categoria: string = " ";
   img: string = " ";
   id: number;

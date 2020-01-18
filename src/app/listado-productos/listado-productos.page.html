@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title align="center">
+      Listado Productos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-content>
+    <ion-virtual-scroll [items]="productos" approxItemHeight="320px">
+      <ion-card *virtualItem="let producto" [routerLink]="['/detalles-productos', producto.id]" routerDirection="forward">
+      <ion-card-header class="text-center">
+        <ion-card-title>{{ producto.nombre }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content> 
+        <label>
+          Precio: {{ producto.precio }}  <br>
+          Categoria: {{producto.categoria}}
+        </label> 
+      </ion-card-content>
+      </ion-card>
+    </ion-virtual-scroll>
+  </ion-content>
+</ion-content>

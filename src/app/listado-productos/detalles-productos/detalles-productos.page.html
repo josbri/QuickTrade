@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title align="center">
+       
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card> <ion-card-header class="text-center">
+    <ion-card-title>{{ producto.nombre }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content> 
+    <ng-container *ngFor="let parameter of producto | keyvalue">
+      <label>
+        {{parameter.key | titlecase}}: {{ parameter.value }}  <br>
+      </label> 
+    </ng-container>
+  </ion-card-content>
+  </ion-card>
+</ion-content> 

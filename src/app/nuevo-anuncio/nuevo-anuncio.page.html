@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title align="center">
       Anuncio {{categoria}}
     </ion-title>
@@ -29,11 +32,11 @@
         <ion-radio-group>
           <ion-item>
             <ion-label>Coche</ion-label>
-            <ion-radio slot="start" value="Coche" [(ngModel)]="tipo"></ion-radio>
+            <ion-radio slot="start" [value]="Coche" [(ngModel)]="tipo"></ion-radio>
           </ion-item>
           <ion-item>
             <ion-label>Moto</ion-label>
-            <ion-radio slot="start" value="Moto" [(ngModel)] ="tipo"></ion-radio>
+            <ion-radio slot="start" [value]="Moto" [(ngModel)] ="tipo"></ion-radio>
           </ion-item>
         </ion-radio-group>
         <ion-item>
@@ -74,11 +77,11 @@
           </ion-item>
           <ion-item>
             <ion-label>Usado</ion-label>
-            <ion-radio slot="start" value="usado" [(ngModel)] = "estado"></ion-radio>
+            <ion-radio slot="start" [value]="usado" [(ngModel)] = "estado"></ion-radio>
           </ion-item>
           <ion-item>
             <ion-label>Nuevo</ion-label>
-            <ion-radio slot="start" value="perfecto" [(ngModel)] = "estado"></ion-radio>
+            <ion-radio slot="start" [value]="perfecto" [(ngModel)] = "estado"></ion-radio>
           </ion-item>
         </ion-radio-group>
       </ion-list>
