@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import { IProducto, IInmobiliaria, IMotor, ITecnologia } from '../interfaces';
 import {ToastController}  from '@ionic/angular'
+import { ProductosService } from '../services/ProductosService';
 
 @Component({
   selector: 'app-nuevo-anuncio',
@@ -9,9 +10,9 @@ import {ToastController}  from '@ionic/angular'
 })
 export class NuevoAnuncioPage {
 
-  categoria: string = " ";
+  categoria: string;
   img: string = " ";
-  id: number;
+  id: string;
   nombre: string;
   descripcion: string;
   precio: number;
@@ -24,11 +25,21 @@ export class NuevoAnuncioPage {
   date: Date;
   estado: string;
 
-
+producto: (IProducto | IInmobiliaria | IMotor | ITecnologia);
 productos: (IProducto | IInmobiliaria | IMotor | ITecnologia)[] = []
 
-constructor(private _toastCtrl : ToastController) { }
+constructor(private _toastCtrl : ToastController, private _productosService: ProductosService) { }
 
+ngOnInit(){
+  let ref = this._productosService.getProductos();
+    ref.once("value", snapshot => {
+      //snapshot = todos los nodos que encuentre en getProductos
+      snapshot.forEach(child => {
+        let value = child.val();
+        this.productos.push(value);
+      })
+    })
+}
 async presentToast(){
   const toast = await this._toastCtrl.create({
     message: 'El producto ' + this.nombre + ' se ha añadido correctamente',
@@ -39,39 +50,40 @@ async presentToast(){
 }
 
 insertar(){
+
   if (this.categoria == "Hogar") {
-    this.productos.push({
-      "id": this.productos.length + 1,
+       this.producto = {
+      "id": " ",
       "nombre": this.nombre,
       "descripcion": this.descripcion,
       "categoria": this.categoria,
       "precio": this.precio
-    })
+    }
   }
   else if (this.categoria == "Tecnologia") {
-    this.productos.push({
-      "id": this.productos.length + 1,
+    this.producto = {
+      "id": " ",
       "nombre": this.nombre,
       "descripcion": this.descripcion,
       "categoria": this.categoria,
       "precio": this.precio,
       "estado": this.estado,
-    })
+    }
   }
   else if (this.categoria == "Motor") {
-    this.productos.push({
-      "id": this.productos.length + 1,
+    this.producto = {
+      "id": " ",
       "nombre": this.nombre,
       "descripcion": this.descripcion,
       "categoria": this.categoria,
       "precio": this.precio,
       "tipo": this.tipo,
       "km": this.km,
-    })
+    }
   }
   else if (this.categoria = "Inmobiliaria") {
-    this.productos.push({
-      "id": this.productos.length + 1,
+    this.producto = {
+      "id": " ",
       "nombre": this.nombre,
       "descripcion": this.descripcion,
       "categoria": this.categoria,
@@ -80,9 +92,11 @@ insertar(){
       "bath": this.bath,
       "habitaciones": this.habitaciones,
       "localidad": this.localidad,
-    })
+    }
   }
 
+  //this.producto.push()
+  this._productosService.setProducto(this.producto);
   this.presentToast();
   
   this.precio = null; 
@@ -96,8 +110,6 @@ insertar(){
   this.tipo= " ";
   this.km = null;
   this.estado= " ";
-
-
 }
 //Cambiamos la imagen.
 changeImage(){

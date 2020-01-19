@@ -11,9 +11,9 @@
 
 <ion-content>
   <ion-content>
-    <ion-virtual-scroll [items]="productos" approxItemHeight="320px">
-      <ion-card *virtualItem="let producto" [routerLink]="['/detalles-productos', producto.id]" routerDirection="forward">
-      <ion-card-header class="text-center">
+    <ion-list *ngFor="let producto of productos">
+      <ion-card [routerLink]="['/detalles-productos', producto.id]" routerDirection="forward">
+      <ion-card-header>
         <ion-card-title>{{ producto.nombre }}</ion-card-title>
       </ion-card-header>
       <ion-card-content> 
@@ -23,6 +23,6 @@
         </label> 
       </ion-card-content>
       </ion-card>
-    </ion-virtual-scroll>
+    </ion-list>
   </ion-content>
 </ion-content>

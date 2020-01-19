@@ -97,15 +97,17 @@
   </ion-list>
   <ion-button color="tertiary" expand="block" (click)="insertar()" >Publicar </ion-button>
 
+  <ng-container *ngIf="categoria">
   <ion-label>Productos {{categoria}} : </ion-label>
-  <ion-card *ngFor="let producto of productos ">
+  <ion-card *ngFor="let producto of productos " [routerLink]="['/detalles-productos', producto.id]" routerDirection="forward">
     <ng-container *ngIf="producto.categoria === categoria">
     <ion-card-header>
-      <ion-card-title> {{producto.id}}. {{producto.nombre}} - {{producto.precio}}€</ion-card-title>
+      <ion-card-title> {{producto.nombre}} - {{producto.precio}}€</ion-card-title>
     </ion-card-header>
     <ion-card-content>
         <ion-text>{{producto.descripcion}}</ion-text>
     </ion-card-content>
   </ng-container>
   </ion-card>
+</ng-container>
 </ion-content>

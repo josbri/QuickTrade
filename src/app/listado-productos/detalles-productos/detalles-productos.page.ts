@@ -10,16 +10,22 @@ import { ProductosService } from 'src/app/services/ProductosService';
 })
 export class DetallesProductosPage implements OnInit {
   
-  producto: (IProducto | IInmobiliaria | IMotor | ITecnologia);
-  id: number;
+  producto: (IProducto | IInmobiliaria | IMotor | ITecnologia) = null;
+  id: string;
 
-  constructor(private _activatedRoute: ActivatedRoute, private _productosService: ProductosService) { }
-  
   ngOnInit() {
     //Le ponemos un + delante para convertirlo a number.
-    this.id = +this._activatedRoute.snapshot.paramMap.get('id');  
-
-    this.producto = this._productosService.getProducto(this.id);
+    this.id = this._activatedRoute.snapshot.paramMap.get('id');  
+    
+    var ref = this._productosService.getProductoById(this.id);
+    ref.once('value', data => {
+      data.forEach( item => {
+        this.producto = item.val();
+      })
+    })
   }
+  constructor(private _activatedRoute: ActivatedRoute, private _productosService: ProductosService) { }
+  
+ 
 
 }

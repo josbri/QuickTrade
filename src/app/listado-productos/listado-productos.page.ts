@@ -9,15 +9,21 @@ import { ProductosService } from '../services/ProductosService';
 })
 export class ListadoProductosPage implements OnInit {
 
-  
-
-productos: (IProducto | IInmobiliaria | IMotor | ITecnologia)[];
+  productos: (IProducto | IInmobiliaria | IMotor | ITecnologia)[]=[];
 
 //Inyectamos el servicio de productos.
   constructor(private _productosService: ProductosService) {
    }
 
   ngOnInit() {
-    this.productos = this._productosService.getProductos();
+    let ref = this._productosService.getProductos();
+    ref.once("value", snapshot => {
+      //snapshot = todos los nodos que encuentre en getProductos
+      snapshot.forEach(child => {
+        let value = child.val();
+        this.productos.push(value);
+      })
+    })
+   
   }
 }
