@@ -20,6 +20,14 @@ const routes: Routes = [
     path: 'nuevo-anuncio',
     loadChildren: () => import('./nuevo-anuncio/nuevo-anuncio.module').then( m => m.NuevoAnuncioPageModule)
   },
+  {
+    path: 'mis-productos',
+    loadChildren: () => import('./mis-productos/mis-productos.module').then( m => m.MisProductosPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
   
 ];
 

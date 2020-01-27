@@ -1,7 +1,8 @@
 import { Component} from '@angular/core';
-import { IProducto, IInmobiliaria, IMotor, ITecnologia } from '../interfaces';
+import { IProducto, IInmobiliaria, IMotor, ITecnologia, IUsuario } from '../interfaces';
 import {ToastController}  from '@ionic/angular'
 import { ProductosService } from '../services/ProductosService';
+import { UsuariosService } from '../services/UsuariosService';
 
 @Component({
   selector: 'app-nuevo-anuncio',
@@ -27,8 +28,8 @@ export class NuevoAnuncioPage {
 
 producto: (IProducto | IInmobiliaria | IMotor | ITecnologia);
 productos: (IProducto | IInmobiliaria | IMotor | ITecnologia)[] = []
-
-constructor(private _toastCtrl : ToastController, private _productosService: ProductosService) { }
+localUsuario: IUsuario;
+constructor(private _toastCtrl : ToastController, private _productosService: ProductosService, private _usuariosService: UsuariosService) { }
 
 ngOnInit(){
   let ref = this._productosService.getProductos();
@@ -38,7 +39,10 @@ ngOnInit(){
         let value = child.val();
         this.productos.push(value);
       })
-    })
+    });
+
+    
+    this.localUsuario = this._usuariosService.getLocalUser();
 }
 async presentToast(){
   const toast = await this._toastCtrl.create({
@@ -50,14 +54,15 @@ async presentToast(){
 }
 
 insertar(){
-
+  
   if (this.categoria == "Hogar") {
        this.producto = {
       "id": " ",
       "nombre": this.nombre,
       "descripcion": this.descripcion,
       "categoria": this.categoria,
-      "precio": this.precio
+      "precio": this.precio,
+      "id_usuario": this.localUsuario.id
     }
   }
   else if (this.categoria == "Tecnologia") {
@@ -68,6 +73,7 @@ insertar(){
       "categoria": this.categoria,
       "precio": this.precio,
       "estado": this.estado,
+      "id_usuario": this.localUsuario.id
     }
   }
   else if (this.categoria == "Motor") {
@@ -79,6 +85,7 @@ insertar(){
       "precio": this.precio,
       "tipo": this.tipo,
       "km": this.km,
+      "id_usuario": this.localUsuario.id
     }
   }
   else if (this.categoria = "Inmobiliaria") {
@@ -92,6 +99,7 @@ insertar(){
       "bath": this.bath,
       "habitaciones": this.habitaciones,
       "localidad": this.localidad,
+      "id_usuario": this.localUsuario.id
     }
   }
 
@@ -99,6 +107,10 @@ insertar(){
   this._productosService.setProducto(this.producto);
   this.presentToast();
   
+  this.resetForms();
+}
+
+resetForms(){
   this.precio = null; 
   this.nombre= " ";
   this.descripcion= " ";

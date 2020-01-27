@@ -4,7 +4,6 @@ import { AngularFireDatabase } from '@angular/fire/database';
 
 @Injectable()
 
-
 export class ProductosService{
   productos: (IProducto | IInmobiliaria | IMotor | ITecnologia)[]=[];
   producto: (IProducto | IInmobiliaria | IMotor | ITecnologia);
@@ -31,5 +30,4 @@ export class ProductosService{
     let ref= this._db.database.ref("productos").orderByChild('id').equalTo(id);
     return ref;
   }
- 
 }
