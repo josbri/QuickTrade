@@ -4,7 +4,7 @@ export interface IProducto {
     descripcion: string;
     categoria: string;
     precio: number;
-    id_usuario: string;
+    userId: string;
 }
 
 export interface IMotor extends IProducto {
@@ -31,4 +31,5 @@ export interface IUsuario {
     id: string,
     nombre: string,
     email: string
+
 }

@@ -8,11 +8,12 @@
 
 <ion-content>
   <div>
-    <ion-button class="ion-justify-content-between btn-principal" expand="full" [routerLink]="['/nuevo-anuncio']"
+    <ion-button class="ion-justify-content-between btn-principal" expand="full" [routerLink]="['/nuevo-anuncio', UserId]"
     color="secondary">Nuevo Producto</ion-button>
     <ion-button class="ion-justify-content-between btn-principal" expand="full" [routerLink]="['/listado-productos']"
     color="secondary">Listado Productos</ion-button>
-
+    <ion-button class="ion-justify-content-between btn-principal" expand="full" [routerLink]="['/mis-productos', UserId]"
+    color="secondary">Mis Productos</ion-button>
   </div>
   
 </ion-content>

@@ -1,9 +1,33 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>mis-productos</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title align="center">
+      Mis Productos
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-content>
+    <ion-list *ngFor="let producto of productos">
+      <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ producto.nombre }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content> 
+        <label>
+          Precio: {{ producto.precio }}  <br>
+          Categoria: {{producto.categoria}}
+        </label> 
+        <ion-item>
+          <ion-button class="ion-justify-content-between btn-principal" color="tertiary" (click)="deleteProducto(producto.id)">Eliminar</ion-button>
+          <ion-button class="ion-justify-content-between btn-principal" color="tertiary" (click)="showModal(producto, producto.categoria)">Editar</ion-button>
+        </ion-item>
+      </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </ion-content>
 </ion-content>
+

@@ -4,7 +4,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 
 @Injectable()
 
-export class ProductosService{
+export class ProductosService {
   productos: (IProducto | IInmobiliaria | IMotor | ITecnologia)[]=[];
   producto: (IProducto | IInmobiliaria | IMotor | ITecnologia);
   constructor(private _db: AngularFireDatabase){
@@ -21,6 +21,12 @@ export class ProductosService{
     newRef.set(producto);
   }
 
+  updateProducto(producto: (IProducto | IInmobiliaria | IMotor | ITecnologia)){
+    let ref = this._db.database.ref("productos");
+    ref.child(producto.id).set(producto);
+    console.log(producto.id);
+
+  }
   getProductos(){
     let ref= this._db.database.ref("productos");
     return ref;
@@ -30,4 +36,14 @@ export class ProductosService{
     let ref= this._db.database.ref("productos").orderByChild('id').equalTo(id);
     return ref;
   }
+  getProductosByUserId(): firebase.database.Reference{
+    let ref = this._db.database.ref("productos");
+      return ref;
+  }
+
+  deleteProducto(id){
+    let ref = this._db.database.ref("productos").
+    ref.child(id).remove();
+  }
+
 }

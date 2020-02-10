@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+    </ion-buttons>
+    <ion-title align="center">
+     EDITAR MAL
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--Select para cambiar entre categorías, así queda claro en que categoría estás."-->
+  <ion-item>
+    <ion-label>Categoría </ion-label>
+    <ion-icon [name]="img"></ion-icon>
+    <ion-select (ionChange)="changeImage()" [(ngModel)] = "categoria">
+      <ion-select-option value="Tecnologia">Tecnología</ion-select-option>
+      <ion-select-option value="Hogar">Hogar</ion-select-option>
+      <ion-select-option value="Inmobiliaria">Inmobiliaria</ion-select-option>
+      <ion-select-option value="Motor">Motor</ion-select-option>
+    </ion-select>
+  </ion-item>
+ </ion-content>

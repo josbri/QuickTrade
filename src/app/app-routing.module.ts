@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'main', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   {
     path: 'listado-productos',
@@ -13,20 +13,24 @@ const routes: Routes = [
     loadChildren: () => import('./listado-productos/detalles-productos/detalles-productos.module').then( m => m.DetallesProductosPageModule)
   },
   {
-    path: 'main',
+    path: 'main/:UserId',
     loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
   },
   {
-    path: 'nuevo-anuncio',
+    path: 'nuevo-anuncio/:UserId',
     loadChildren: () => import('./nuevo-anuncio/nuevo-anuncio.module').then( m => m.NuevoAnuncioPageModule)
   },
   {
-    path: 'mis-productos',
+    path: 'mis-productos/:UserId',
     loadChildren: () => import('./mis-productos/mis-productos.module').then( m => m.MisProductosPageModule)
   },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'editar-modal',
+    loadChildren: () => import('./editar-modal/editar-modal.module').then( m => m.EditarModalPageModule)
   },
   
 ];

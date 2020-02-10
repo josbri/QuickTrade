@@ -1,8 +1,9 @@
 import { Component} from '@angular/core';
 import { IProducto, IInmobiliaria, IMotor, ITecnologia, IUsuario } from '../interfaces';
-import {ToastController}  from '@ionic/angular'
+import { ToastController }  from '@ionic/angular'
 import { ProductosService } from '../services/ProductosService';
 import { UsuariosService } from '../services/UsuariosService';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-nuevo-anuncio',
@@ -26,23 +27,26 @@ export class NuevoAnuncioPage {
   date: Date;
   estado: string;
 
+
+
+productoId : string;
 producto: (IProducto | IInmobiliaria | IMotor | ITecnologia);
 productos: (IProducto | IInmobiliaria | IMotor | ITecnologia)[] = []
-localUsuario: IUsuario;
-constructor(private _toastCtrl : ToastController, private _productosService: ProductosService, private _usuariosService: UsuariosService) { }
+localUsuarioId: string;
+constructor(private _activatedRoute: ActivatedRoute, private _toastCtrl : ToastController, private _productosService: ProductosService, private _usuariosService: UsuariosService) { }
 
 ngOnInit(){
-  let ref = this._productosService.getProductos();
-    ref.once("value", snapshot => {
-      //snapshot = todos los nodos que encuentre en getProductos
-      snapshot.forEach(child => {
-        let value = child.val();
-        this.productos.push(value);
-      })
-    });
-
-    
-    this.localUsuario = this._usuariosService.getLocalUser();
+   this.localUsuarioId = this._activatedRoute.snapshot.paramMap.get('UserId');
+      //Recuperamos todos los productos.
+      let ref = this._productosService.getProductos();
+      ref.once("value", snapshot => {
+        //snapshot = todos los nodos que encuentre en getProductos
+        snapshot.forEach(child => {
+          let value = child.val();
+          this.productos.push(value);
+        })
+      });
+    //this.localUsuarioId = this._usuariosService.getLocalUserId();
 }
 async presentToast(){
   const toast = await this._toastCtrl.create({
@@ -62,7 +66,7 @@ insertar(){
       "descripcion": this.descripcion,
       "categoria": this.categoria,
       "precio": this.precio,
-      "id_usuario": this.localUsuario.id
+      "userId": this.localUsuarioId
     }
   }
   else if (this.categoria == "Tecnologia") {
@@ -73,7 +77,7 @@ insertar(){
       "categoria": this.categoria,
       "precio": this.precio,
       "estado": this.estado,
-      "id_usuario": this.localUsuario.id
+      "userId": this.localUsuarioId
     }
   }
   else if (this.categoria == "Motor") {
@@ -85,7 +89,7 @@ insertar(){
       "precio": this.precio,
       "tipo": this.tipo,
       "km": this.km,
-      "id_usuario": this.localUsuario.id
+      "userId": this.localUsuarioId
     }
   }
   else if (this.categoria = "Inmobiliaria") {
@@ -99,14 +103,13 @@ insertar(){
       "bath": this.bath,
       "habitaciones": this.habitaciones,
       "localidad": this.localidad,
-      "id_usuario": this.localUsuario.id
+      "userId": this.localUsuarioId
     }
   }
 
   //this.producto.push()
   this._productosService.setProducto(this.producto);
   this.presentToast();
-  
   this.resetForms();
 }
 
@@ -123,6 +126,7 @@ resetForms(){
   this.km = null;
   this.estado= " ";
 }
+
 //Cambiamos la imagen.
 changeImage(){
   if (this.categoria == "Hogar") {
