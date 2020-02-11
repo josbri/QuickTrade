@@ -1,15 +1,18 @@
 <ion-header>
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title align="center">
-      Login
+      Registrarse
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form class="form" [formGroup]="validations_form"  (ngSubmit)="loginUser(validations_form.value)">
+  <form class="form" [formGroup]="validations_form"  (ngSubmit)="tryRegister(validations_form.value)">
   <ion-item>
-    <ion-label position="fixed" >Email</ion-label>
+    <ion-label position="fixed" color="alert">Email</ion-label>
     <ion-input placeholder="Usuario" formControlName="email"></ion-input>
   </ion-item>
   <div class="validation-errors">
@@ -20,7 +23,7 @@
     </ng-container>
   </div>
   <ion-item>
-    <ion-label position="fixed" >Password</ion-label>
+    <ion-label position="fixed" color="alert">Password</ion-label>
     <ion-input type="password"  placeholder="Password" formControlName="password" class="form-controll" required></ion-input>
   </ion-item>
   <div class="validation-errors">
@@ -30,11 +33,8 @@
       </div>
     </ng-container>
   </div>
-
-  <ion-button color="tertiary"  class="submit-btn" type="submit" expand="block" [disabled]="!validations_form.valid" >Login </ion-button>
-
-  <ion-button color="primary" expand="block" [routerLink]="['/register']">Registrarse </ion-button>
-</form>
-
+  <ion-button color="primary"  class="submit-btn" type="submit" expand="block" [disabled]="!validations_form.valid">Registrarse </ion-button>
   <label class="error-message">{{errorMessage}}</label>
+  <label class="success-message">{{successMessage}}</label>
+</form>
 </ion-content>

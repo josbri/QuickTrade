@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../services/UsuariosService';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -10,10 +10,17 @@ import { ActivatedRoute } from '@angular/router';
 export class MainPage implements OnInit {
   UserId: String;
 
-  constructor(private _activatedRoute: ActivatedRoute, private _usuariosService: UsuariosService) { }
+  constructor(private _activatedRoute: ActivatedRoute, 
+    private _usuariosService: UsuariosService,
+    private _router: Router) { }
 
   ngOnInit() {
-    this.UserId = this._activatedRoute.snapshot.paramMap.get('UserId'); 
+    if(this._usuariosService.userDetails()){
+      this.UserId = this._usuariosService.userDetails().uid;
+      console.log(this.UserId);
+    }else{
+      this._router.navigate(['login']);
+    }
   }
 
 }

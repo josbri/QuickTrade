@@ -21,6 +21,7 @@ import {environment} from '../environments/environment'
 
 import { FormsModule } from '@angular/forms';
 import { EditarModalPage } from './editar-modal/editar-modal.page';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 //Definimos todo lo que nos va a hacer falta para la app.
 @NgModule({
@@ -30,6 +31,7 @@ import { EditarModalPage } from './editar-modal/editar-modal.page';
     //Firebase:
   AngularFireModule.initializeApp(environment.firebaseConfig),
   AngularFireDatabaseModule,
+  AngularFireAuthModule,
   FormsModule
   ],
   providers: [

@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('./listado-productos/detalles-productos/detalles-productos.module').then( m => m.DetallesProductosPageModule)
   },
   {
-    path: 'main/:UserId',
+    path: 'main',
     loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
   },
   {
@@ -31,6 +31,10 @@ const routes: Routes = [
   {
     path: 'editar-modal',
     loadChildren: () => import('./editar-modal/editar-modal.module').then( m => m.EditarModalPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   
 ];
