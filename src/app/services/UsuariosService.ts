@@ -19,21 +19,6 @@ export class UsuariosService {
     let ref = this._db.database.ref("busquedas").child(userId).push(busqueda);
   }
 
-  // ref.child("Victor").setValue("s
-  saveExisting(objetoBusqueda){
-    let ref = this._db.database.ref("busquedas");
-    //ref.child(objetoBusqueda.userId).set(busqueda);
-  }
-
-//   DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference() 
-// mDatabase.push().setValue(1);
-
-   saveNew(objetoBusqueda){
-    let ref = this._db.database.ref("busquedas");
-    ref.push(objetoBusqueda);
-   }
-
-
   /***Fin ejercicio 1 */
   getUsuarios() {
       let ref= this._db.database.ref("usuarios");
