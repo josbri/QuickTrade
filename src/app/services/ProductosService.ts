@@ -36,6 +36,15 @@ export class ProductosService {
     let ref= this._db.database.ref("productos").orderByChild('id').equalTo(id);
     return ref;
   }
+
+  /*** EJERCICIO 1 ****/
+  getProductosByNombre(nombre: string) {
+    let ref = this._db.database.ref("productos").orderByChild("nombre").equalTo(nombre);
+    return ref;
+  }
+
+  /*** FIN EJERCICIO 1 ***/
+
   getProductosByUserId(): firebase.database.Reference{
     let ref = this._db.database.ref("productos");
       return ref;

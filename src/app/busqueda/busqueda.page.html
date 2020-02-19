@@ -10,5 +10,28 @@
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-label>Buscar:</ion-label>
+    <ion-textarea class="textinput" placeholder="Descripción" [(ngModel)] = "busquedaString"></ion-textarea>
+  </ion-item>
+  <ion-button class="ion-justify-content-between btn-principal" expand="full" 
+  color="secondary" (click)="buscar()" >Buscar</ion-button>
 
+
+  <ion-list *ngFor="let producto of productos">
+    <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ producto.nombre }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content> 
+      <label>
+        Precio: {{ producto.precio }}  <br>
+        Categoria: {{producto.categoria}}
+      </label> 
+      <ion-item>
+      <!--  <ion-button class="ion-justify-content-between btn-principal" color="tertiary" (click)="showModal(producto, producto.categoria)">Editar</ion-button>-->
+      </ion-item>
+    </ion-card-content>
+    </ion-card>
+  </ion-list>
 </ion-content>
