@@ -1,7 +1,10 @@
+/*** EJERCICIO 1 */
+
 import { Component, OnInit } from '@angular/core';
 import { ProductosService } from '../services/ProductosService';
 import { ActivatedRoute } from '@angular/router';
 import { IProducto, IInmobiliaria, IMotor, ITecnologia } from '../interfaces';
+import { UsuariosService } from '../services/UsuariosService';
 
 @Component({
   selector: 'app-busqueda',
@@ -14,14 +17,18 @@ export class BusquedaPage implements OnInit {
   userId: string;
   productos: (IProducto | IInmobiliaria | IMotor | ITecnologia)[]=[];
 
-  constructor(private _activatedRoute: ActivatedRoute, private _productosService: ProductosService) { }
+
+  constructor(private _activatedRoute: ActivatedRoute, private _productosService: ProductosService,
+    private _usuariosService: UsuariosService) { }
 
   ngOnInit() {
     this.userId = this._activatedRoute.snapshot.paramMap.get('UserId'); 
     console.log("USER ID BUSQUEDA: " + this.userId)
   }
 
+
   buscar(){
+    this.productos = [];
     if(this.busquedaString != ""){
       console.log("busquedaString: " + this.busquedaString)
       var ref = this._productosService.getProductosByNombre(this.busquedaString);
@@ -33,7 +40,13 @@ export class BusquedaPage implements OnInit {
       })
     })
     }
-    console.log(this.productos)
+    this.saveUserSearch();
+  }
 
+  saveUserSearch(){
+    this._usuariosService.saveUserSearch(this.userId, this.busquedaString);
   }
 }
+
+
+/*** FIN EJERCICIO 1 */

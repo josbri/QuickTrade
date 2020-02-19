@@ -24,7 +24,6 @@ export class ProductosService {
   updateProducto(producto: (IProducto | IInmobiliaria | IMotor | ITecnologia)){
     let ref = this._db.database.ref("productos");
     ref.child(producto.id).set(producto);
-    console.log(producto.id);
 
   }
   getProductos(){
